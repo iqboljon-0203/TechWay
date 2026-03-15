@@ -1,0 +1,82 @@
+{
+  "Metadata": {
+    "title": "Techway — Innovative IT Solutions",
+    "description": "Techway delivers cutting-edge software development, cloud solutions, and digital transformation services for modern businesses."
+  },
+  "Nav": {
+    "home": "Home",
+    "services": "Services",
+    "blog": "Blog",
+    "contact": "Contact",
+    "languageLabel": "Language",
+    "themeToggle": "Toggle theme"
+  },
+  "Hero": {
+    "title": "Building the Future of Technology",
+    "subtitle": "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
+    "cta": "Get Started",
+    "ctaSecondary": "Learn More"
+  },
+  "Services": {
+    "sectionTitle": "Our Services",
+    "sectionSubtitle": "Advanced IT solutions for your business",
+    "crmTitle": "CRM, ERP Systems",
+    "crmDesc": "Custom enterprise solutions to automate and streamline your business processes.",
+    "networkTitle": "Network Services",
+    "networkDesc": "Reliable, high-performance corporate network infrastructure.",
+    "cyberTitle": "Security Systems",
+    "cyberDesc": "Comprehensive protection of digital data and infrastructure.",
+    "ipTitle": "IP Telephony & Call Centers",
+    "ipDesc": "High-quality communication channels and call center systems.",
+    "licenseTitle": "Software Licenses",
+    "licenseDesc": "Official and secure software license distributions."
+  },
+  "Footer": {
+    "rights": "All rights reserved.",
+    "description": "Empowering businesses with modern IT solutions, from CRM & ERP systems to highly secure network infrastructures.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contact": "Contact Us",
+    "address": "Andijon city, Istiklol street, 33",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "links": {
+      "services": "Services",
+      "about": "About Us",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "servicesList": {
+      "crmerp": "CRM & ERP",
+      "cybersecurity": "Cybersecurity",
+      "networking": "Networking",
+      "iptelephony": "IP Telephony"
+    }
+  },
+  "BlogPreview": {
+    "sectionTitle": "Latest Insights",
+    "sectionSubtitle": "Thoughts and perspectives from our team on modern technology.",
+    "viewAll": "View all posts"
+  },
+  "Contact": {
+    "sectionTitle": "Get in Touch",
+    "sectionSubtitle": "Ready to accelerate your digital transformation? Let's talk.",
+    "address": "Andijon city, Istiklol street, 33",
+    "name": "Full Name",
+    "service": "Select Service",
+    "services": {
+      "crm": "CRM, ERP Systems",
+      "network": "Network Services",
+      "cyber": "Security Systems",
+      "ip": "IP Telephony & Call Centers",
+      "license": "Software Licenses",
+      "other": "Other"
+    },
+    "phone": "Phone Number",
+    "message": "Your Message",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "success": "Your message was sent successfully!",
+    "error": "Failed to send the message. Please try again."
+  }
+}

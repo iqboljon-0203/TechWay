@@ -1,0 +1,82 @@
+{
+  "Metadata": {
+    "title": "Techway — Innovatsion IT Yechimlar",
+    "description": "Techway zamonaviy dasturiy ta'minot ishlab chiqish, bulutli yechimlar va raqamli transformatsiya xizmatlarini taqdim etadi."
+  },
+  "Nav": {
+    "home": "Bosh sahifa",
+    "services": "Xizmatlar",
+    "blog": "Blog",
+    "contact": "Aloqa",
+    "languageLabel": "Til",
+    "themeToggle": "Mavzuni almashtirish"
+  },
+  "Hero": {
+    "title": "Texnologiya Kelajagini Quramiz",
+    "subtitle": "Biz zamonaviy dunyoda biznesning rivojlanishiga yordam beradigan innovatsion raqamli yechimlar yaratamiz.",
+    "cta": "Boshlash",
+    "ctaSecondary": "Batafsil"
+  },
+  "Services": {
+    "sectionTitle": "Xizmatlarimiz",
+    "sectionSubtitle": "Biznes uchun ilg'or IT yechimlar",
+    "crmTitle": "CRM, ERP Tizimlari",
+    "crmDesc": "Biznes jarayonlarini avtomatlashtirish uchun dasturiy yechimlar.",
+    "networkTitle": "Tarmoq xizmatlari",
+    "networkDesc": "Ishonchli va yuqori tezlikdagi korporativ tarmoq infratuzilmasi.",
+    "cyberTitle": "Xavfsizlik tizimlari",
+    "cyberDesc": "Raqamli ma'lumotlar va infratuzilmani kompleks himoya qilish.",
+    "ipTitle": "IP telefoniya va Call-markaz",
+    "ipDesc": "Mijozlar bilan sifatli umuzatiladigan aloqa kanallarini tashkil qilish.",
+    "licenseTitle": "Dasturiy litsenziyalar",
+    "licenseDesc": "Rasmiy va xavfsiz dasturiy ta'minot litsenziyalari savdosi."
+  },
+  "Footer": {
+    "rights": "Barcha huquqlar himoyalangan.",
+    "description": "Biznesingizni zamonaviy IT yechimlar, CRM va ERP tizimlaridan tortib yuqori xavfsizlik tarmog'i bilan ta'minlaymiz.",
+    "quickLinks": "Tezkor havolalar",
+    "services": "Xizmatlar",
+    "contact": "Biz bilan bog'lanish",
+    "address": "Andijon shahar, Istiqlol ko’chasi, 33-uy",
+    "privacy": "Maxfiylik siyosati",
+    "terms": "Foydalanish shartlari",
+    "links": {
+      "services": "Xizmatlar",
+      "about": "Biz haqimizda",
+      "blog": "Blog",
+      "contact": "Aloqa"
+    },
+    "servicesList": {
+      "crmerp": "CRM va ERP",
+      "cybersecurity": "Kiberxavfsizlik",
+      "networking": "Tarmoq xizmatlari",
+      "iptelephony": "IP Telefoniya"
+    }
+  },
+  "BlogPreview": {
+    "sectionTitle": "So'nggi Maqolalar",
+    "sectionSubtitle": "Zamonaviy texnologiyalar haqida jamoamizning fikr va mulohazalari.",
+    "viewAll": "Barcha maqolalar"
+  },
+  "Contact": {
+    "sectionTitle": "Biz bilan bog'laning",
+    "sectionSubtitle": "Raqamli transformatsiyangizni tezlashtirishga tayyormisiz? Keling, gaplashamiz.",
+    "address": "Andijon shahar, Istiqlol ko’chasi, 33-uy",
+    "name": "To'liq ismingiz",
+    "service": "Xizmatni tanlang",
+    "services": {
+      "crm": "CRM, ERP Tizimlari",
+      "network": "Tarmoq xizmatlari",
+      "cyber": "Xavfsizlik tizimlari",
+      "ip": "IP telefoniya va Call-markaz",
+      "license": "Dasturiy litsenziyalar",
+      "other": "Boshqa"
+    },
+    "phone": "Telefon raqami",
+    "message": "Sizning xabaringiz",
+    "submit": "Xabarni yuborish",
+    "sending": "Yuborilmoqda...",
+    "success": "Xabaringiz muvaffaqiyatli yuborildi!",
+    "error": "Xabar yuborishda xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring."
+  }
+}
