@@ -17,49 +17,51 @@ import { routing } from './i18n/routing';
 const intlMiddleware = createIntlMiddleware(routing);
 
 export async function middleware(request: NextRequest) {
-  // ─── Step 1: Supabase Session Refresh ──────────────────────────
-  // Creates a response object that we can modify (add/update cookies).
-  // The Supabase server client reads the session from cookies and
-  // refreshes the access token if it's about to expire.
-  let supabaseResponse = NextResponse.next({ request });
+  // ─── Step 1: Create the starting response ──────────────────────
+  // We first let next-intl handle the routing/locale logic.
+  // This gives us the base response (possibly a redirect or a locale-prefixed page).
+  let response = intlMiddleware(request);
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          // Forward updated auth cookies to the browser
-          cookiesToSet.forEach(({ name, value, options }) => {
-            request.cookies.set(name, value);
-            supabaseResponse.cookies.set(name, value, options);
-          });
-        },
+  // ─── Step 2: Initialize Supabase Client ───────────────────────
+  // We use the response FROM next-intl as the target for Supabase cookies.
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  // Guard against missing environment variables
+  if (!supabaseUrl || !supabaseKey) {
+    console.error('Missing Supabase environment variables in middleware');
+    return response;
+  }
+
+  const supabase = createServerClient(supabaseUrl, supabaseKey, {
+    cookies: {
+      getAll() {
+        return request.cookies.getAll();
       },
-    }
-  );
-
-  // Refresh the session — this validates the JWT and refreshes
-  // the access token if needed. Do NOT remove this call.
-  await supabase.auth.getUser();
-
-  // ─── Step 2: next-intl Locale Routing ──────────────────────────
-  // Run the intl middleware to handle locale detection and redirects.
-  const intlResponse = intlMiddleware(request);
-
-  // Copy Supabase auth cookies onto the intl response
-  supabaseResponse.cookies.getAll().forEach((cookie) => {
-    intlResponse.cookies.set(cookie.name, cookie.value);
+      setAll(cookiesToSet) {
+        // Update both the request and the existing response
+        cookiesToSet.forEach(({ name, value, options }) => {
+          request.cookies.set(name, value);
+          response.cookies.set(name, value, options);
+        });
+      },
+    },
   });
 
-  return intlResponse;
+  // ─── Step 3: Refresh Session ──────────────────────────────────
+  // This will trigger setAll() if the session needs to be refreshed.
+  // We don't necessarily need the user object, just the side effect of cookie updates.
+  try {
+    await supabase.auth.getUser();
+  } catch (err) {
+    console.error('Supabase session refresh failed:', err);
+  }
+
+  return response;
 }
 
 export const config = {
   // Match locale-prefixed routes and the root path
   // Excludes: API routes, _next internals, static files
-  matcher: ['/', '/(en|uz|ru)/:path*'],
+  matcher: ['/', '/(en|uz|ru)/:path*', '/((?!api|_next|_vercel|.*\\..*).*)'],
 };
