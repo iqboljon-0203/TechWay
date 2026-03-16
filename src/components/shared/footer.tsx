@@ -12,7 +12,6 @@ import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { Facebook, Instagram, Linkedin, Twitter, Mail, MapPin, Phone, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Logo } from '@/components/shared/logo';
 
 export function Footer() {
   const t = useTranslations('Footer');
@@ -32,15 +31,9 @@ export function Footer() {
           {/* Logo & Info */}
           <div className="lg:col-span-4 space-y-8">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="h-12 w-12 rounded-xl bg-white/10 flex items-center justify-center border border-white/20 transition-all group-hover:bg-brand-accent group-hover:border-brand-accent">
-                <Logo className="h-8 w-8" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-extrabold tracking-tight leading-none" style={{ fontFamily: 'var(--font-heading)' }}>
-                  TechWay
-                </span>
-
-              </div>
+              <span className="text-2xl font-extrabold tracking-tight leading-none" style={{ fontFamily: 'var(--font-heading)' }}>
+                TechWay
+              </span>
             </Link>
             <p className="text-white/60 text-base leading-relaxed max-w-md">
               {t('description', { default: 'Credibly harness client-centric opportunities with prospective bandwidth. Objectively engineer processes client-centric manufactured products.' })}
@@ -66,7 +59,7 @@ export function Footer() {
               {t('company')}
             </h3>
             <ul className="space-y-4">
-              {['About', 'Services', 'News', 'Team', 'Contact'].map((item) => (
+              {['About', 'Services', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link href={`/#${item.toLowerCase()}`} className="text-white/60 hover:text-brand-glow transition-colors flex items-center group">
                     <ArrowUpRight className="h-3.5 w-3.5 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />

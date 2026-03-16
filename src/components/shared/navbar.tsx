@@ -14,7 +14,6 @@ import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import { ThemeToggle } from '@/components/shared/theme-toggle';
 import { LanguageSwitcher } from '@/components/shared/language-switcher';
-import { Logo } from '@/components/shared/logo';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -76,11 +75,10 @@ export function Navbar() {
         <Link
           href="/"
           onClick={(e) => handleNavClick(e, '/')}
-          className="group relative flex items-center gap-2"
+          className="group relative flex items-center gap-1"
         >
           <div className="absolute -inset-3 rounded-full bg-primary/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
-          <Logo className="relative h-9 w-9 transition-all duration-500 group-hover:scale-110" />
-          <div className="flex items-center ml-1 font-extrabold tracking-tight text-xl" style={{ fontFamily: 'var(--font-heading)' }}>
+          <div className="flex items-center font-extrabold tracking-tight text-2xl" style={{ fontFamily: 'var(--font-heading)' }}>
             <span className="text-foreground transition-colors duration-300 group-hover:text-primary">
               Tech
             </span>

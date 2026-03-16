@@ -10,8 +10,6 @@ import { FloatingServiceBar } from '@/components/home/floating-services';
 import { AboutSection } from '@/components/home/about';
 import { RichServices } from '@/components/home/services-rich';
 import { AppointmentSection } from '@/components/home/appointment';
-import { PricingSection } from '@/components/home/pricing';
-import { TeamSection } from '@/components/home/team';
 import { RichBlogPreview } from '@/components/home/blog-rich';
 import { getPublishedPosts } from '@/lib/blog';
 import { type Locale } from '@/i18n/routing';
@@ -46,12 +44,6 @@ export default async function HomePage({
 
       {/* 📝 Appointment Form - High conversion glassmorphism */}
       <AppointmentSection />
-
-      {/* 💰 Pricing - 3-tier enterprise plans */}
-      <PricingSection />
-
-      {/* 👥 Team & Testimonials - Social proof and trust */}
-      <TeamSection />
 
       {/* 📰 Blog Insights - Expert articles grid */}
       <RichBlogPreview posts={posts.slice(0, 3)} />
