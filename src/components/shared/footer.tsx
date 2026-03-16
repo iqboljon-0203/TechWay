@@ -10,7 +10,7 @@
 
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
-import { Facebook, Instagram, Linkedin, Twitter, Mail, MapPin, Phone, ArrowUpRight } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter, Mail, MapPin, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function Footer() {
@@ -54,14 +54,13 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="lg:col-span-2">
-            <h3 className="text-lg font-bold mb-8 flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h3 className="text-lg font-bold mb-8" style={{ fontFamily: 'var(--font-heading)' }}>
               {t('company')}
             </h3>
             <ul className="space-y-4">
               {['About', 'Services', 'Contact'].map((item) => (
                 <li key={item}>
-                  <Link href={`/#${item.toLowerCase()}`} className="text-white/60 hover:text-brand-glow transition-colors flex items-center group">
-                    <ArrowUpRight className="h-3.5 w-3.5 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Link href={`/#${item.toLowerCase()}`} className="text-white/60 hover:text-brand-glow transition-colors block">
                     {t(`links.${item.toLowerCase()}`)}
                   </Link>
                 </li>
@@ -71,14 +70,13 @@ export function Footer() {
 
           {/* Service Links */}
           <div className="lg:col-span-3">
-            <h3 className="text-lg font-bold mb-8 flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h3 className="text-lg font-bold mb-8" style={{ fontFamily: 'var(--font-heading)' }}>
               {t('serviceLinks')}
             </h3>
             <ul className="space-y-4">
               {['Business Consult', 'Cyber Security', 'IT Consultancy', 'Network Architect', 'IP Telephony'].map((item) => (
                 <li key={item}>
-                  <Link href="/services" className="text-white/60 hover:text-brand-glow transition-colors flex items-center group">
-                    <ArrowUpRight className="h-3.5 w-3.5 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Link href="/services" className="text-white/60 hover:text-brand-glow transition-colors block">
                     {t(`services.${item.replace(/\s+/g, '').toLowerCase()}`)}
                   </Link>
                 </li>
@@ -88,7 +86,7 @@ export function Footer() {
 
           {/* Newsletter / Contact */}
           <div className="lg:col-span-3">
-            <h3 className="text-lg font-bold mb-8 flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h3 className="text-lg font-bold mb-8" style={{ fontFamily: 'var(--font-heading)' }}>
               {t('addressTitle')}
             </h3>
             <ul className="space-y-6">
