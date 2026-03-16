@@ -3,80 +3,148 @@
     "title": "Techway — Innovatsion IT Yechimlar",
     "description": "Techway zamonaviy dasturiy ta'minot ishlab chiqish, bulutli yechimlar va raqamli transformatsiya xizmatlarini taqdim etadi."
   },
+  "TopBar": {
+    "location": "Andijon shahar, Istiqlol ko'chasi, 33"
+  },
   "Nav": {
     "home": "Bosh sahifa",
     "services": "Xizmatlar",
     "blog": "Blog",
     "contact": "Aloqa",
+    "cta": "Taklif olish",
     "languageLabel": "Til",
     "themeToggle": "Mavzuni almashtirish"
   },
   "Hero": {
-    "title": "Texnologiya Kelajagini Quramiz",
-    "subtitle": "Biz zamonaviy dunyoda biznesning rivojlanishiga yordam beradigan innovatsion raqamli yechimlar yaratamiz.",
-    "cta": "Boshlash",
-    "ctaSecondary": "Batafsil"
+    "badge": "Aqlli IT Yechimlar",
+    "titlePart1": "G'oyalarni",
+    "titleHighlight": "IT yechimlarga aylantiramiz",
+    "subtitle": "Biz zamonaviy dunyoda biznesning rivojlanishiga yordam beradigan innovatsion raqamli yechimlar yaratamiz. Biznes jarayonlarini professionallik bilan avtomatlashtiring.",
+    "cta": "Bepul Konsultatsiya",
+    "trustPoint1": "Transformatsion IT tajribasi",
+    "trustPoint2": "Yangi avlod innovatsiyalari",
+    "trustPoint3": "Kelajakka tayyor texnologiyalar",
+    "trustPoint4": "Tezkor biznes intellekti",
+    "statNumber": "36+",
+    "statLabel": "Yillik tajriba"
   },
-  "Services": {
-    "sectionTitle": "Xizmatlarimiz",
-    "sectionSubtitle": "Biznes uchun ilg'or IT yechimlar",
-    "crmTitle": "CRM, ERP Tizimlari",
-    "crmDesc": "Biznes jarayonlarini avtomatlashtirish uchun dasturiy yechimlar.",
-    "networkTitle": "Tarmoq xizmatlari",
-    "networkDesc": "Ishonchli va yuqori tezlikdagi korporativ tarmoq infratuzilmasi.",
-    "cyberTitle": "Xavfsizlik tizimlari",
-    "cyberDesc": "Raqamli ma'lumotlar va infratuzilmani kompleks himoya qilish.",
-    "ipTitle": "IP telefoniya va Call-markaz",
-    "ipDesc": "Mijozlar bilan sifatli umuzatiladigan aloqa kanallarini tashkil qilish.",
-    "licenseTitle": "Dasturiy litsenziyalar",
-    "licenseDesc": "Rasmiy va xavfsiz dasturiy ta'minot litsenziyalari savdosi."
+  "FloatingBar": {
+    "consultancyTitle": "IT Konsalting",
+    "consultancyDesc": "Biznesingiz uchun professional IT maslahatlar va strategiyalar.",
+    "securityTitle": "Kiberxavfsizlik",
+    "securityDesc": "Ma'lumotlaringizni zamonaviy kiberhujumlardan ishonchli himoya qilish.",
+    "backupTitle": "Backup va Tiklash",
+    "backupDesc": "Ma'lumotlarni xavfsiz saqlash va tizimni tezkor qayta tiklash yechimlari."
   },
-  "Footer": {
-    "rights": "Barcha huquqlar himoyalangan.",
-    "description": "Biznesingizni zamonaviy IT yechimlar, CRM va ERP tizimlaridan tortib yuqori xavfsizlik tarmog'i bilan ta'minlaymiz.",
-    "quickLinks": "Tezkor havolalar",
-    "services": "Xizmatlar",
-    "contact": "Biz bilan bog'lanish",
-    "address": "Andijon shahar, Istiqlol ko’chasi, 33-uy",
-    "privacy": "Maxfiylik siyosati",
-    "terms": "Foydalanish shartlari",
-    "links": {
-      "services": "Xizmatlar",
-      "about": "Biz haqimizda",
-      "blog": "Blog",
-      "contact": "Aloqa"
-    },
-    "servicesList": {
-      "crmerp": "CRM va ERP",
-      "cybersecurity": "Kiberxavfsizlik",
-      "networking": "Tarmoq xizmatlari",
-      "iptelephony": "IP Telefoniya"
-    }
+  "About": {
+    "badge": "Biz haqimizda",
+    "title": "Biz 36+ yillik tajribaga ega",
+    "titleHighlight": "ishonchli konsalting firmasi.",
+    "description": "Biznes jarayonlarini avtomatlashtirish va raqamli transformatsiya orqali kompaniyangizni yangi bosqichga olib chiqamiz. Tajribali jamoamiz sizga eng yaxshi yechimlarni taqdim etadi.",
+    "cta": "Biz haqimizda ko'proq",
+    "statNumber": "36+",
+    "statLabel": "Yillik tajriba",
+    "feature1": "Transformatsion IT tajribasi",
+    "feature2": "Yangi avlod innovatsiyalari",
+    "feature3": "Aqlli raqamli yechimlar",
+    "feature4": "Kelajakka tayyor texnologiyalar",
+    "feature5": "IT xizmatlarini inqilob qilish",
+    "feature6": "Tezkor biznes intellekti"
+  },
+  "RichServices": {
+    "badge": "Biznes xizmatlar",
+    "titlePart1": "Biznesingiz uchun eng yaxshi",
+    "titleHighlight": "IT yechimlarni",
+    "titlePart2": "taqdim etamiz",
+    "description": "Biznes jarayonlarini professional tahlil qilish va eng zamonaviy standartlar asosida muvofiqlashtirish xizmatlari.",
+    "viewAllBtn": "Barcha xizmatlar",
+    "readMore": "Batafsil",
+    "strategyTitle": "IT Strategik Konsalting",
+    "strategyDesc": "Biznesingiz uchun uzoq muddatli IT strategiyasini ishlab chiqish va joriy etish.",
+    "analyticsTitle": "Ma'lumotlar Tahlili",
+    "analyticsDesc": "Ma'lumotlarni tahlil qilish orqali biznes qarorlarini qabul qilish jarayonini yaxshilash.",
+    "advisoryTitle": "Texnologik Maslahat",
+    "advisoryDesc": "Zamonaviy texnologiyalarni tanlash va ulardan samarali foydalanish bo'yicha maslahatlar.",
+    "optimizationTitle": "Biznes Optimallashtirish",
+    "optimizationDesc": "Texnologiyalar yordamida biznes samaradorligini oshirish va xarajatlarni kamaytirish."
+  },
+  "Appointment": {
+    "badge": "Bepul Taklif",
+    "title": "Bizning IT yechimlarimiz bilan boshlashga tayyormisiz?",
+    "description": "Tajribali jamoamiz sizga eng yaxshi IT infratuzilmani yaratishda yordam beradi. Konsultatsiya uchun murojaat qiling.",
+    "point1": "Yuqori darajadagi IT ekspertiza",
+    "point2": "24/7 ustuvor yordam",
+    "point3": "Zamonaviy xavfsizlik",
+    "formTitle": "Uchrashuv tayinlash",
+    "formSubtitle": "(24/7 mavjud)",
+    "nameLabel": "Ismingiz",
+    "namePlaceholder": "Ismoilov Islom",
+    "emailLabel": "Elektron pochta",
+    "emailPlaceholder": "misol@pochta.com",
+    "phoneLabel": "Telefon raqami",
+    "phonePlaceholder": "+998 90 123 45 67",
+    "serviceLabel": "Xizmatni tanlang",
+    "selectService": "Xizmat turini tanlang",
+    "messageLabel": "Xabar yozing",
+    "messagePlaceholder": "Savol yoki xabaringizni yozing...",
+    "submitBtn": "Uchrashuv tayinlash"
+  },
+  "Pricing": {
+    "badge": "Bizning Narxlar",
+    "title": "Biznes Narxlash Rejasi",
+    "subtitle": "Biznesingiz ehtiyojlari uchun mukammal rejani tanlang va ishonch bilan kengaying.",
+    "mostPopular": "Eng Mashhur",
+    "basicTitle": "Basic Reja",
+    "basicDesc": "Kichik startaplar va shaxsiy loyihalar uchun ideal.",
+    "standardTitle": "Standard Reja",
+    "standardDesc": "To'liq IT yordamiga muhtoj rivojlanayotgan bizneslar uchun eng yaxshisi.",
+    "premiumTitle": "Premium Reja",
+    "premiumDesc": "Keng qamrovli korporativ darajadagi infratuzilma.",
+    "month": "Oyiga",
+    "getStarted": "Hozir boshlash",
+    "feature1": "Tarmoq infratuzilmasini sozlash",
+    "feature2": "Asosiy kiberxavfsizlik auditi",
+    "feature3": "Bulutli xotira (100GB)",
+    "feature4": "Email hosting (5 ta profil)",
+    "feature5": "24/7 bag'ishlangan yordam",
+    "feature6": "Haftalik samaradorlik hisobotlari",
+    "feature7": "Cheksiz CRM integratsiyasi"
+  },
+  "Team": {
+    "teamBadge": "Bizning Ekspertlar",
+    "teamTitle": "Professional Ekspertlarimiz bilan tanishing",
+    "testimonialBadge": "Mijozlar Fikri",
+    "testimonialTitle": "Mijozlarimiz biz haqimizda nima deyishadi"
   },
   "BlogPreview": {
-    "sectionTitle": "So'nggi Maqolalar",
-    "sectionSubtitle": "Zamonaviy texnologiyalar haqida jamoamizning fikr va mulohazalari.",
-    "viewAll": "Barcha maqolalar"
+    "badge": "Yangiliklar va Blog",
+    "title": "So'nggi Yangiliklar va Maqolalar",
+    "readMore": "O'qishda davom eting",
+    "viewAllPosts": "Barcha maqolalar"
   },
-  "Contact": {
-    "sectionTitle": "Biz bilan bog'laning",
-    "sectionSubtitle": "Raqamli transformatsiyangizni tezlashtirishga tayyormisiz? Keling, gaplashamiz.",
-    "address": "Andijon shahar, Istiqlol ko’chasi, 33-uy",
-    "name": "To'liq ismingiz",
-    "service": "Xizmatni tanlang",
-    "services": {
-      "crm": "CRM, ERP Tizimlari",
-      "network": "Tarmoq xizmatlari",
-      "cyber": "Xavfsizlik tizimlari",
-      "ip": "IP telefoniya va Call-markaz",
-      "license": "Dasturiy litsenziyalar",
-      "other": "Boshqa"
+  "Footer": {
+    "description": "Biznesingizni zamonaviy IT yechimlar, CRM va ERP tizimlaridan tortib yuqori xavfsizlik tarmog'i bilan ta'minlaymiz.",
+    "company": "Kompaniya",
+    "serviceLinks": "Xizmatlar",
+    "addressTitle": "Manzilimiz",
+    "address": "Andijon shahar, Istiqlol ko'chasi, 33",
+    "copyright": "© {year} Barcha huquqlar himoyalangan.",
+    "terms": "Foydalanish shartlari",
+    "privacy": "Maxfiylik siyosati",
+    "legal": "Huquqiy ma'lumot",
+    "links": {
+      "about": "Biz haqimizda",
+      "services": "Xizmatlar",
+      "news": "Yangiliklar",
+      "team": "Jamoa",
+      "contact": "Aloqa"
     },
-    "phone": "Telefon raqami",
-    "message": "Sizning xabaringiz",
-    "submit": "Xabarni yuborish",
-    "sending": "Yuborilmoqda...",
-    "success": "Xabaringiz muvaffaqiyatli yuborildi!",
-    "error": "Xabar yuborishda xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring."
+    "services": {
+      "businessconsult": "Biznes Konsalt",
+      "cybersecurity": "Kiberxavfsizlik",
+      "itconsultancy": "IT Konsalting",
+      "networkarchitect": "Tarmoq Arxitektori",
+      "iptelephony": "IP Telefoniya"
+    }
   }
 }

@@ -3,80 +3,148 @@
     "title": "Techway — Innovative IT Solutions",
     "description": "Techway delivers cutting-edge software development, cloud solutions, and digital transformation services for modern businesses."
   },
+  "TopBar": {
+    "location": "Andijon city, Istiklol street, 33"
+  },
   "Nav": {
     "home": "Home",
     "services": "Services",
     "blog": "Blog",
     "contact": "Contact",
+    "cta": "Get A Quote",
     "languageLabel": "Language",
     "themeToggle": "Toggle theme"
   },
   "Hero": {
-    "title": "Building the Future of Technology",
-    "subtitle": "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
-    "cta": "Get Started",
-    "ctaSecondary": "Learn More"
+    "badge": "Smart IT Solution",
+    "titlePart1": "Transforming Ideas",
+    "titleHighlight": "into IT Solutions",
+    "subtitle": "Professionally visualize bricks-and-clicks resources vis-a-vis team driven infomediaries. Progressively coordinate standards compliant platforms rather than just in time.",
+    "cta": "Free Consultation",
+    "trustPoint1": "Transformative IT Experiences",
+    "trustPoint2": "Next-Level Innovation",
+    "trustPoint3": "Future-Ready Technologies",
+    "trustPoint4": "Immediate Business Intelligence",
+    "statNumber": "36+",
+    "statLabel": "Years of experience"
   },
-  "Services": {
-    "sectionTitle": "Our Services",
-    "sectionSubtitle": "Advanced IT solutions for your business",
-    "crmTitle": "CRM, ERP Systems",
-    "crmDesc": "Custom enterprise solutions to automate and streamline your business processes.",
-    "networkTitle": "Network Services",
-    "networkDesc": "Reliable, high-performance corporate network infrastructure.",
-    "cyberTitle": "Security Systems",
-    "cyberDesc": "Comprehensive protection of digital data and infrastructure.",
-    "ipTitle": "IP Telephony & Call Centers",
-    "ipDesc": "High-quality communication channels and call center systems.",
-    "licenseTitle": "Software Licenses",
-    "licenseDesc": "Official and secure software license distributions."
+  "FloatingBar": {
+    "consultancyTitle": "IT Consultancy",
+    "consultancyDesc": "Professionally visualize resources driven Progressively coordinate standards compliant rather.",
+    "securityTitle": "Cyber Security",
+    "securityDesc": "Professionally visualize resources driven Progressively coordinate standards compliant rather.",
+    "backupTitle": "Backup & Recovery",
+    "backupDesc": "Professionally visualize resources driven Progressively coordinate standards compliant rather."
   },
-  "Footer": {
-    "rights": "All rights reserved.",
-    "description": "Empowering businesses with modern IT solutions, from CRM & ERP systems to highly secure network infrastructures.",
-    "quickLinks": "Quick Links",
-    "services": "Services",
-    "contact": "Contact Us",
-    "address": "Andijon city, Istiklol street, 33",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service",
-    "links": {
-      "services": "Services",
-      "about": "About Us",
-      "blog": "Blog",
-      "contact": "Contact"
-    },
-    "servicesList": {
-      "crmerp": "CRM & ERP",
-      "cybersecurity": "Cybersecurity",
-      "networking": "Networking",
-      "iptelephony": "IP Telephony"
-    }
+  "About": {
+    "badge": "About Us",
+    "title": "We Are Trusted Consulting Firm",
+    "titleHighlight": "With 36+ Years Of Experience.",
+    "description": "Professionally visualize bricks-and-clicks resources vis-a-vis team driven infomediaries. Progressively coordinate standards compliant platforms rather than in Professionally visualize bricks-and-clicks resources into team driven infomediaries.",
+    "cta": "More About Us",
+    "statNumber": "36+",
+    "statLabel": "Years of experience",
+    "feature1": "Transformative IT Experiences",
+    "feature2": "Next-Level Innovation",
+    "feature3": "Smart Digital Solutions",
+    "feature4": "Future-Ready Technologies",
+    "feature5": "Revolutionizing IT Services",
+    "feature6": "Immediate Business Intelligence"
+  },
+  "RichServices": {
+    "badge": "Our Services",
+    "titlePart1": "Providing The Best",
+    "titleHighlight": "IT Solutions",
+    "titlePart2": "For Your Business",
+    "description": "Professionally visualize into resources Professionally visualize resources driven Progressively coordinate standards compliant rather.",
+    "viewAllBtn": "View All Services",
+    "readMore": "View More",
+    "strategyTitle": "IT Strategy Consulting",
+    "strategyDesc": "Professionally visualize the resources driven Progressively coordinate compliant.",
+    "analyticsTitle": "Data Analytics Services",
+    "analyticsDesc": "Professionally visualize the resources driven Progressively coordinate compliant.",
+    "advisoryTitle": "Technology Advisory",
+    "advisoryDesc": "Professionally visualize the resources driven Progressively coordinate compliant.",
+    "optimizationTitle": "Business Optimization",
+    "optimizationDesc": "Professionally visualize the resources driven Progressively coordinate compliant."
+  },
+  "Appointment": {
+    "badge": "Free Quote",
+    "title": "Ready to Get Started with Our IT Solutions?",
+    "description": "Professionally visualize bricks-and-clicks resources vis-a-vis team driven infomediaries. Progressively coordinate standards.",
+    "point1": "Top-tier IT Expertise",
+    "point2": "24/7 Priority Support",
+    "point3": "Cutting-edge Security",
+    "formTitle": "Make an Appointment",
+    "formSubtitle": "(24/7 available)",
+    "nameLabel": "Your Name",
+    "namePlaceholder": "John Doe",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "example@email.com",
+    "phoneLabel": "Contact No",
+    "phonePlaceholder": "+998 90 123 45 67",
+    "serviceLabel": "Select Service",
+    "selectService": "Choose a service",
+    "messageLabel": "Write Message",
+    "messagePlaceholder": "How can we help your business?",
+    "submitBtn": "Make an Appointment"
+  },
+  "Pricing": {
+    "badge": "Our Pricing",
+    "title": "Business Pricing Plan",
+    "subtitle": "Choose the perfect plan for your business needs and scale with confidence.",
+    "mostPopular": "Most Popular",
+    "basicTitle": "Basic Plan",
+    "basicDesc": "Ideal for small startups and individual projects.",
+    "standardTitle": "Standard Plan",
+    "standardDesc": "Best for growing businesses needing full IT support.",
+    "premiumTitle": "Premium Plan",
+    "premiumDesc": "Comprehensive enterprise-grade infrastructure.",
+    "month": "Month",
+    "getStarted": "Get Started Now",
+    "feature1": "Network Infrastructure Setup",
+    "feature2": "Basic Cybersecurity Audit",
+    "feature3": "Cloud Storage (100GB)",
+    "feature4": "Email Hosting (5 Accounts)",
+    "feature5": "24/7 Dedicated Support",
+    "feature6": "Weekly Performance Reports",
+    "feature7": "Unlimited CRM Integration"
+  },
+  "Team": {
+    "teamBadge": "Expert Team members",
+    "teamTitle": "Meet Our Professional Experts Members",
+    "testimonialBadge": "Client Review",
+    "testimonialTitle": "What our clients reviews"
   },
   "BlogPreview": {
-    "sectionTitle": "Latest Insights",
-    "sectionSubtitle": "Thoughts and perspectives from our team on modern technology.",
-    "viewAll": "View all posts"
+    "badge": "News And Blog",
+    "title": "Latest News Post and Articles",
+    "readMore": "Continue Reading",
+    "viewAllPosts": "View More Project"
   },
-  "Contact": {
-    "sectionTitle": "Get in Touch",
-    "sectionSubtitle": "Ready to accelerate your digital transformation? Let's talk.",
+  "Footer": {
+    "description": "Credibly harness client-centric opportunities with prospective bandwidth. Objectively engineer processes client-centric manufactured products.",
+    "company": "Company",
+    "serviceLinks": "Service Links",
+    "addressTitle": "Our Address",
     "address": "Andijon city, Istiklol street, 33",
-    "name": "Full Name",
-    "service": "Select Service",
-    "services": {
-      "crm": "CRM, ERP Systems",
-      "network": "Network Services",
-      "cyber": "Security Systems",
-      "ip": "IP Telephony & Call Centers",
-      "license": "Software Licenses",
-      "other": "Other"
+    "copyright": "© {year} All Rights Reserved by",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "legal": "Legal",
+    "links": {
+      "about": "About",
+      "services": "Services",
+      "news": "News",
+      "team": "Team",
+      "contact": "Contact"
     },
-    "phone": "Phone Number",
-    "message": "Your Message",
-    "submit": "Send Message",
-    "sending": "Sending...",
-    "success": "Your message was sent successfully!",
-    "error": "Failed to send the message. Please try again."
+    "services": {
+      "businessconsult": "Business Consult",
+      "cybersecurity": "Cyber Security",
+      "itconsultancy": "IT Consultancy",
+      "networkarchitect": "Network Architect",
+      "iptelephony": "IP Telephony"
+    }
   }
 }

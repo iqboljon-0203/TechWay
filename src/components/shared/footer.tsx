@@ -1,145 +1,146 @@
+// =============================================================================
+// Footer Component — IT-Flow Enterprise Style
+// Features:
+//   - Dark navy background with branding
+//   - Fixed @/i18n/navigation Link usage for locale prefixes
+//   - Newsletter section and clear site navigation
+// =============================================================================
+
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
-import { Facebook, Instagram, Linkedin, Twitter, Mail, MapPin, Phone } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter, Mail, MapPin, Phone, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Logo } from '@/components/shared/logo';
 
 export function Footer() {
   const t = useTranslations('Footer');
-
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { name: 'LinkedIn', icon: Linkedin, href: '#' },
-    { name: 'Twitter', icon: Twitter, href: '#' },
     { name: 'Facebook', icon: Facebook, href: '#' },
+    { name: 'Twitter', icon: Twitter, href: '#' },
     { name: 'Instagram', icon: Instagram, href: '#' },
+    { name: 'LinkedIn', icon: Linkedin, href: '#' },
   ];
 
   return (
-    <footer className="border-t border-border/50 bg-background pt-16 pb-8">
+    <footer className="bg-brand-navy-dark text-white pt-24 pb-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-          {/* Brand & Description */}
-          <div className="col-span-1 lg:col-span-1">
-            <Link 
-              href="/" 
-              onClick={(e) => {
-                const element = document.querySelector('header');
-                if (element && window.location.pathname.endsWith('/')) {
-                  e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-              }}
-              className="group flex items-center gap-2"
-            >
-              <Logo className="h-8 w-8 transition-transform group-hover:scale-110" />
-              <span className="text-xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent group-hover:from-primary group-hover:to-primary/70 transition-all">
-                TechWay
-              </span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20 items-stretch">
+          {/* Logo & Info */}
+          <div className="lg:col-span-4 space-y-8">
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="h-12 w-12 rounded-xl bg-white/10 flex items-center justify-center border border-white/20 transition-all group-hover:bg-brand-accent group-hover:border-brand-accent">
+                <Logo className="h-8 w-8" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-2xl font-extrabold tracking-tight leading-none" style={{ fontFamily: 'var(--font-heading)' }}>
+                  TechWay
+                </span>
+
+              </div>
             </Link>
-            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-              {t('description', { default: 'Empowering businesses with modern IT solutions, from CRM & ERP systems to highly secure network infrastructures.' })}
+            <p className="text-white/60 text-base leading-relaxed max-w-md">
+              {t('description', { default: 'Credibly harness client-centric opportunities with prospective bandwidth. Objectively engineer processes client-centric manufactured products.' })}
             </p>
-            <div className="mt-6 flex space-x-4">
+            <div className="flex gap-3">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.name}
                   href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  whileHover={{ y: -5 }}
+                  className="h-10 w-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white/70 hover:bg-brand-accent hover:text-white transition-all duration-300"
                 >
-                  <span className="sr-only">{social.name}</span>
-                  <social.icon className="h-5 w-5" />
+                  <social.icon className="h-4 w-4" />
                 </motion.a>
               ))}
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">
-              {t('quickLinks')}
+          <div className="lg:col-span-2">
+            <h3 className="text-lg font-bold mb-8 flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-accent" />
+              {t('company')}
             </h3>
-            <ul className="mt-4 space-y-3">
-              {['Services', 'About', 'Blog', 'Contact'].map((item) => (
+            <ul className="space-y-4">
+              {['About', 'Services', 'News', 'Team', 'Contact'].map((item) => (
                 <li key={item}>
-                  <Link href={`/#${item.toLowerCase()}`} className="text-sm text-muted-foreground hover:text-primary transition-colors relative group">
-                    <span>{t(`links.${item.toLowerCase()}` as any)}</span>
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                  <Link href={`/#${item.toLowerCase()}`} className="text-white/60 hover:text-brand-glow transition-colors flex items-center group">
+                    <ArrowUpRight className="h-3.5 w-3.5 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {t(`links.${item.toLowerCase()}`)}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
-            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">
-              {t('services')}
+          {/* Service Links */}
+          <div className="lg:col-span-3">
+            <h3 className="text-lg font-bold mb-8 flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-accent" />
+              {t('serviceLinks')}
             </h3>
-            <ul className="mt-4 space-y-3">
-              {[
-                { name: 'CRM & ERP', slug: 'crm' },
-                { name: 'Cybersecurity', slug: 'cyber' },
-                { name: 'Networking', slug: 'network' },
-                { name: 'IP Telephony', slug: 'ip' }
-              ].map((item) => (
-                <li key={item.name}>
-                  <Link href={`/services/${item.slug}` as any} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {t(`servicesList.${item.name.replace(/\s+/g, '').replace('&', '').toLowerCase()}` as any)}
+            <ul className="space-y-4">
+              {['Business Consult', 'Cyber Security', 'IT Consultancy', 'Network Architect', 'IP Telephony'].map((item) => (
+                <li key={item}>
+                  <Link href="/services" className="text-white/60 hover:text-brand-glow transition-colors flex items-center group">
+                    <ArrowUpRight className="h-3.5 w-3.5 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {t(`services.${item.replace(/\s+/g, '').toLowerCase()}`)}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">
-              {t('contact')}
+          {/* Newsletter / Contact */}
+          <div className="lg:col-span-3">
+            <h3 className="text-lg font-bold mb-8 flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-accent" />
+              {t('addressTitle')}
             </h3>
-            <ul className="mt-4 space-y-4">
-              <li className="flex items-start">
-                <MapPin className="h-5 w-5 text-primary shrink-0 mr-3" />
-                <span className="text-sm text-muted-foreground max-w-[200px]">
-                  {t('address')}
-                </span>
+            <ul className="space-y-6">
+              <li className="flex items-start gap-4 group">
+                <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 group-hover:bg-brand-accent transition-all duration-300">
+                  <MapPin className="h-4 w-4" />
+                </div>
+                <div className="text-sm text-white/60">
+                   {t('address')}
+                </div>
               </li>
-              <li className="flex items-center">
-                <Phone className="h-5 w-5 text-primary shrink-0 mr-3" />
-                <a href="tel:+998552050555" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              <li className="flex items-start gap-4 group">
+                <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 group-hover:bg-brand-accent transition-all duration-300">
+                  <Phone className="h-4 w-4" />
+                </div>
+                <div className="text-sm text-white/60">
                   +998 55 205 05 55
-                </a>
+                </div>
               </li>
-              <li className="flex items-center">
-                <Mail className="h-5 w-5 text-primary shrink-0 mr-3" />
-                <a href="mailto:hello@techway.tech" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              <li className="flex items-start gap-4 group">
+                <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 group-hover:bg-brand-accent transition-all duration-300">
+                  <Mail className="h-4 w-4" />
+                </div>
+                <div className="text-sm text-white/60">
                   hello@techway.tech
-                </a>
+                </div>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 border-t border-border/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} Techway. {t('rights')}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm font-medium">
+          <p className="text-white/40">
+            {t('copyright', { year: currentYear })} <span className="text-white">TechWay</span>
           </p>
-          <div className="flex space-x-6">
-            <Link href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              {t('privacy')}
-            </Link>
-            <Link href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              {t('terms')}
-            </Link>
+          <div className="flex gap-8">
+            <Link href="/" className="text-white/40 hover:text-white transition-colors">{t('terms')}</Link>
+            <Link href="/" className="text-white/40 hover:text-white transition-colors">{t('privacy')}</Link>
+            <Link href="/" className="text-white/40 hover:text-white transition-colors">{t('legal')}</Link>
           </div>
+
         </div>
       </div>
     </footer>

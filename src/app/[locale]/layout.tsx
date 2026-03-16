@@ -11,10 +11,11 @@
 import type { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
-import { Inter } from 'next/font/google';
+import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 import { Geist_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { ThemeProvider } from '@/components/providers/theme-provider';
+import { TopBar } from '@/components/shared/topbar';
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
 import { routing, type Locale } from '@/i18n/routing';
@@ -22,12 +23,20 @@ import '../globals.css';
 
 // =============================================================================
 // Font Configuration
-// Using Inter for body text (clean, professional) and Geist Mono for code.
+// Plus Jakarta Sans for headings (authoritative, enterprise)
+// Inter for body text (clean, highly legible)
 // =============================================================================
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
   variable: '--font-sans',
   display: 'swap',
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-heading',
+  display: 'swap',
+  weight: ['500', '600', '700', '800'],
 });
 
 const geistMono = Geist_Mono({
@@ -110,7 +119,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${plusJakarta.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -119,11 +128,14 @@ export default async function LocaleLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider messages={messages}>
+            {/* Top Bar — secondary info */}
+            <TopBar />
+
             {/* Shared Navbar — renders on every page */}
             <Navbar />
 
-            {/* Main content area with top padding for fixed navbar */}
-            <main className="min-h-screen pt-16">
+            {/* Main content area with top padding for topbar + navbar */}
+            <main className="min-h-screen pt-[104px] lg:pt-[112px]">
               {children}
             </main>
 

@@ -1,146 +1,142 @@
+// =============================================================================
+// Hero Section — IT-Flow Enterprise Style
+// Dual-column layout with bold typography on the left and professional
+// imagery with decorative borders on the right.
+// Features a 'Floating Stats' badge overlapping the images.
+// =============================================================================
+
 'use client';
 
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+import Image from 'next/image';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export function Hero() {
   const t = useTranslations('Hero');
 
-  // Text reveal animation variants
-  const containerVars: any = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const wordVars: any = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] },
-    },
-  };
-
-  const titleWords = t('title').split(' ');
-
   return (
-    <section id="home" className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center overflow-hidden bg-background">
-      {/* Interactive Background — Animated Grid & Orbs */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
-        
-        {/* Floating Orbs using Framer Motion */}
-        <motion.div
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute -top-40 -right-40 h-96 w-96 rounded-full bg-primary/10 blur-[100px]"
-        />
-        <motion.div
-          animate={{
-            x: [0, -40, 0],
-            y: [0, 40, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 1,
-          }}
-          className="absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-indigo-500/10 blur-[100px]"
-        />
-
-        {/* Subtle Grid */}
-        <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
-          style={{
-            backgroundImage: `linear-gradient(currentColor 1px, transparent 1px),
-                             linear-gradient(90deg, currentColor 1px, transparent 1px)`,
-            backgroundSize: '40px 40px',
-          }}
-        />
-      </div>
-
-      <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary backdrop-blur-sm"
-        >
-          <span className="mr-2 h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
-          Techway Solutions
-        </motion.div>
-
-        {/* Animated Headline */}
-        <motion.h1
-          variants={containerVars}
-          initial="hidden"
-          animate="visible"
-          className="mb-6 flex flex-wrap justify-center gap-x-3 gap-y-1 text-5xl font-bold leading-tight tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
-        >
-          {titleWords.map((word, i) => (
-            <motion.span
-              key={i}
-              variants={wordVars}
-              className="bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent"
+    <section className="dark relative overflow-hidden bg-brand-navy bg-hero-pattern pattern-diamonds">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-12 py-16 md:py-20 lg:grid-cols-2 lg:gap-16 lg:py-24">
+          {/* ─── Left Column: Typography & CTA ───────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
+            className="text-center lg:text-left"
+          >
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="mb-6 inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm border border-white/20"
             >
-              {word}
-            </motion.span>
-          ))}
-        </motion.h1>
+              <span className="mr-2 h-2 w-2 animate-pulse rounded-full bg-brand-glow" />
+              {t('badge')}
+            </motion.div>
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl"
-        >
-          {t('subtitle')}
-        </motion.p>
+            {/* Heading */}
+            <h1
+              className="text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl"
+              style={{ fontFamily: 'var(--font-heading)' }}
+            >
+              {t('titlePart1')}{' '}
+              <br className="hidden sm:block" />
+              <span className="text-brand-glow">{t('titleHighlight')}</span>
+            </h1>
 
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
-        >
-          <Link
-            href="/#contact"
-            className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-10px_rgba(99,102,241,0.5)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_60px_-15px_rgba(99,102,241,0.7)]"
+            {/* Subtitle */}
+            <p className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg lg:mx-0 mx-auto">
+              {t('subtitle')}
+            </p>
+
+            {/* CTA */}
+            <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
+              <Link
+                href="/#contact"
+                className="group inline-flex items-center rounded-lg bg-brand-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-accent/30 transition-all duration-300 hover:bg-brand-glow hover:shadow-brand-glow/30 hover:scale-105"
+              >
+                {t('cta')}
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </div>
+
+            {/* Trust Points */}
+            <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {['trustPoint1', 'trustPoint2', 'trustPoint3', 'trustPoint4'].map((key, i) => (
+                <motion.div
+                  key={key}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 + i * 0.1 }}
+                  className="flex items-center gap-2 text-sm text-white/80"
+                >
+                  <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-brand-glow" />
+                  <span>{t(key)}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* ─── Right Column: Professional Imagery ──────────── */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.2, 0.65, 0.3, 0.9] }}
+            className="relative"
           >
-            {/* Shimmer effect inside the button */}
-            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
-            <span className="relative">{t('cta')}</span>
-          </Link>
+            {/* Main Image */}
+            <div className="relative overflow-hidden rounded-2xl border-4 border-white/10 shadow-2xl shadow-black/30">
+              <Image
+                src="/images/hero-professionals.png"
+                alt="TechWay IT Solutions Professionals"
+                width={640}
+                height={480}
+                className="h-auto w-full object-cover"
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
 
-          <Link
-            href="/#services"
-            className="group inline-flex items-center justify-center rounded-xl border border-border/50 bg-background/50 px-8 py-4 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-primary/5 hover:scale-105"
-          >
-            <span>{t('ctaSecondary')}</span>
-            <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </Link>
-        </motion.div>
+              {/* Dark overlay at bottom for gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/40 via-transparent to-transparent" />
+            </div>
+
+            {/* Floating Stats Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.8, type: 'spring', stiffness: 200 }}
+              className="absolute -bottom-6 -left-6 z-10 rounded-2xl bg-brand-accent p-5 text-white shadow-2xl shadow-brand-accent/40 sm:p-6"
+            >
+              <div className="flex items-center gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
+                  <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-2xl font-extrabold" style={{ fontFamily: 'var(--font-heading)' }}>
+                    {t('statNumber')}
+                  </div>
+                  <div className="text-xs font-medium text-white/80">{t('statLabel')}</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Decorative — Navigation Arrows */}
+            <div className="absolute -bottom-6 right-4 z-10 flex gap-2">
+              <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm border border-white/20 transition-all hover:bg-brand-accent hover:border-brand-accent">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+              </button>
+              <button className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-accent text-white transition-all hover:bg-brand-glow">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
