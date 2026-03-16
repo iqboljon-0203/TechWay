@@ -76,50 +76,62 @@ export async function getPublishedPosts(
   locale: Locale,
   options?: { page?: number; pageSize?: number }
 ): Promise<{ posts: LocalizedPost[]; total: number }> {
-  const supabase = await createClient();
+  try {
+    const supabaseAction = await createClient();
+    
+    // Check if env vars are present (createClient might not throw but fail on first call)
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      console.warn('[blog] Missing Supabase environment variables. Returning empty posts.');
+      return { posts: [], total: 0 };
+    }
 
-  const page = options?.page ?? 1;
-  const pageSize = options?.pageSize ?? DEFAULT_PAGE_SIZE;
-  const from = (page - 1) * pageSize;
-  const to = from + pageSize - 1;
+    const supabase = supabaseAction;
 
-  // Build the select string — only fetch required locale columns
-  const titleCol: TitleColumn = `title_${locale}`;
-  const contentCol: ContentColumn = `content_${locale}`;
-  const excerptCol: ExcerptColumn = `excerpt_${locale}`;
+    const page = options?.page ?? 1;
+    const pageSize = options?.pageSize ?? DEFAULT_PAGE_SIZE;
+    const from = (page - 1) * pageSize;
+    const to = from + pageSize - 1;
 
-  const selectColumns = [
-    'id',
-    'slug',
-    'image_url',
-    'is_published',
-    'created_at',
-    'updated_at',
-    'author_id',
-    titleCol,
-    contentCol,
-    excerptCol,
-  ].join(', ');
+    // Build the select string — only fetch required locale columns
+    const titleCol: TitleColumn = `title_${locale}`;
+    const contentCol: ContentColumn = `content_${locale}`;
+    const excerptCol: ExcerptColumn = `excerpt_${locale}`;
 
-  const { data, error, count } = await supabase
-    .from('posts')
-    .select(selectColumns, { count: 'exact' })
-    .eq('is_published', true)
-    .order('created_at', { ascending: false })
-    .range(from, to);
+    const selectColumns = [
+      'id',
+      'slug',
+      'image_url',
+      'is_published',
+      'created_at',
+      'updated_at',
+      'author_id',
+      titleCol,
+      contentCol,
+      excerptCol,
+    ].join(', ');
 
-  if (error) {
-    console.error('[blog] Failed to fetch published posts:', error.message);
+    const { data, error, count } = await supabase
+      .from('posts')
+      .select(selectColumns, { count: 'exact' })
+      .eq('is_published', true)
+      .order('created_at', { ascending: false })
+      .range(from, to);
+
+    if (error) {
+      console.error('[blog] Failed to fetch published posts:', error.message);
+      return { posts: [], total: 0 };
+    }
+
+    // Cast rows to PostRow shape for the localizePost helper.
+    const posts = (data as unknown as PostRow[]).map((row) =>
+      localizePost(row, locale)
+    );
+
+    return { posts, total: count ?? 0 };
+  } catch (err) {
+    console.error('[blog] Unexpected error in getPublishedPosts:', err);
     return { posts: [], total: 0 };
   }
-
-  // Cast rows to PostRow shape for the localizePost helper.
-  // Since we only selected certain columns, we need a partial cast.
-  const posts = (data as unknown as PostRow[]).map((row) =>
-    localizePost(row, locale)
-  );
-
-  return { posts, total: count ?? 0 };
 }
 
 /**
