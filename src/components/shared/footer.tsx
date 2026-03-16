@@ -55,7 +55,6 @@ export function Footer() {
           {/* Quick Links */}
           <div className="lg:col-span-2">
             <h3 className="text-lg font-bold mb-8 flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-accent" />
               {t('company')}
             </h3>
             <ul className="space-y-4">
@@ -73,7 +72,6 @@ export function Footer() {
           {/* Service Links */}
           <div className="lg:col-span-3">
             <h3 className="text-lg font-bold mb-8 flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-accent" />
               {t('serviceLinks')}
             </h3>
             <ul className="space-y-4">
@@ -91,7 +89,6 @@ export function Footer() {
           {/* Newsletter / Contact */}
           <div className="lg:col-span-3">
             <h3 className="text-lg font-bold mb-8 flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-accent" />
               {t('addressTitle')}
             </h3>
             <ul className="space-y-6">
