@@ -19,7 +19,7 @@ type Post = {
   id: string;
   slug: string;
   title: string;
-  excerpt?: string;
+  excerpt?: string | null;
   image_url: string | null;
   created_at: string;
   author_name?: string;

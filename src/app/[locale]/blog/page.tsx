@@ -2,6 +2,7 @@ import { getPublishedPosts } from '@/lib/blog';
 import { setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+import { type Locale } from '@/i18n/routing';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import { Metadata } from 'next';
@@ -41,12 +42,13 @@ export default async function BlogPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const typedLocale = locale as Locale;
   setRequestLocale(locale);
 
   // Note: t works at the server component level but Next-Intl documentation 
   // recommends passing localized strings or using `getTranslations` for server components.
   // For simplicity, we just inline some server translations or rely on DB data.
-  const { posts } = await getPublishedPosts(locale as any);
+  const { posts } = await getPublishedPosts(typedLocale);
 
   let displayPosts = posts;
   

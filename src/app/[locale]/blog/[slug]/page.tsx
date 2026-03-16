@@ -6,6 +6,7 @@ import { setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { ChevronLeft } from 'lucide-react';
+import { type Locale } from '@/i18n/routing';
 
 export const revalidate = 3600;
 
@@ -43,9 +44,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug, locale } = await params;
+  const typedLocale = locale as Locale;
   setRequestLocale(locale);
 
-  const post = await getPostBySlug(slug, locale as any);
+  const post = await getPostBySlug(slug, typedLocale);
 
   if (!post) {
     notFound();

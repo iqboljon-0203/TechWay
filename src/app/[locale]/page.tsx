@@ -14,6 +14,7 @@ import { PricingSection } from '@/components/home/pricing';
 import { TeamSection } from '@/components/home/team';
 import { RichBlogPreview } from '@/components/home/blog-rich';
 import { getPublishedPosts } from '@/lib/blog';
+import { type Locale } from '@/i18n/routing';
 
 export default async function HomePage({
   params,
@@ -21,12 +22,13 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const typedLocale = locale as Locale;
   
   // Enable static rendering for this locale
   setRequestLocale(locale);
 
   // Fetch real blog posts if available
-  const { posts } = await getPublishedPosts(locale, { pageSize: 3 });
+  const { posts } = await getPublishedPosts(typedLocale, { pageSize: 3 });
 
   return (
     <div className="flex flex-col overflow-x-hidden">
