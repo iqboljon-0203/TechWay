@@ -72,13 +72,19 @@ export async function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     
     // Determine locale from current or intl-applied headers
+    // Determine locale from current or intl-applied headers
     const localeMatch = url.pathname.split('/')[1];
     const locale = routing.locales.includes(localeMatch as any) ? localeMatch : routing.defaultLocale;
     const cleanPath = routing.locales.includes(localeMatch as any) 
       ? url.pathname.replace(`/${localeMatch}`, '') 
       : url.pathname;
-      
-    url.pathname = `/${locale}/admin${cleanPath === '/' ? '' : cleanPath}`;
+
+    // If it's an auth path, we don't need the /admin prefix, just the locale
+    if (cleanPath.startsWith('/auth')) {
+      url.pathname = `/${locale}${cleanPath}`;
+    } else {
+      url.pathname = `/${locale}/admin${cleanPath === '/' ? '' : cleanPath}`;
+    }
     
     // Create rewrite response but keep cookies/headers from intlResponse and original response
     const rewriteResponse = NextResponse.rewrite(url);
