@@ -11,10 +11,14 @@ import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
-export function AboutSection() {
+import { SiteContent } from '@/lib/content';
+
+export function AboutSection({ content }: { content: SiteContent | null }) {
   const t = useTranslations('About');
 
-  const features = ['feature1', 'feature2', 'feature3', 'feature4', 'feature5', 'feature6'] as const;
+  const features = content?.preview_features && content.preview_features.length > 0 
+    ? content.preview_features 
+    : ['feature1', 'feature2', 'feature3', 'feature4', 'feature5', 'feature6'].map(k => t(k as any));
 
   return (
     <section className="py-24 sm:py-32 bg-background">
@@ -45,7 +49,7 @@ export function AboutSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5, type: 'spring', stiffness: 200 }}
-              className="absolute -bottom-8 -right-4 z-10 rounded-2xl bg-brand-navy p-6 text-white shadow-2xl sm:-right-8"
+              className="absolute -bottom-8 -right-4 z-10 rounded-2xl bg-brand-navy-dark p-6 text-white shadow-2xl sm:-right-8"
             >
               <div className="text-center">
                 <div className="flex items-center justify-center gap-2 mb-1">
@@ -54,12 +58,12 @@ export function AboutSection() {
                   </svg>
                 </div>
                 <div
-                  className="text-3xl font-extrabold"
+                  className="text-3xl font-extrabold text-brand-glow"
                   style={{ fontFamily: 'var(--font-heading)' }}
                 >
-                  {t('statNumber')}
+                  {content?.statNumber || t('statNumber')}
                 </div>
-                <div className="text-xs text-white/70 mt-1">{t('statLabel')}</div>
+                <div className="text-xs text-white/70 mt-1">{content?.statLabel || t('statLabel')}</div>
               </div>
             </motion.div>
           </motion.div>
@@ -75,43 +79,43 @@ export function AboutSection() {
             {/* Badge */}
             <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary border border-primary/20">
               <span className="mr-2 h-1.5 w-1.5 rounded-full bg-primary" />
-              {t('badge')}
+              {content?.badge || t('badge')}
             </div>
 
             {/* Heading */}
             <h2
-              className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl !leading-tight"
+              className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl !leading-tight"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
-              {t('title')}{' '}
-              <span className="text-primary">{t('titleHighlight')}</span>
+              {content?.title || t('title')}{' '}
+              <span className="text-primary">{content?.highlight || t('titleHighlight')}</span>
             </h2>
 
             {/* Description */}
-            <p className="text-base text-muted-foreground leading-relaxed max-w-lg">
-              {t('description')}
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+              {content?.description || t('description')}
             </p>
 
             {/* Feature grid */}
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 pt-2">
-              {features.map((key, i) => (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 pt-4">
+              {features.map((featureText, i) => (
                 <motion.div
-                  key={key}
+                  key={i}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + i * 0.08 }}
-                  className="flex items-center gap-2.5 text-sm font-medium text-foreground"
+                  className="flex items-center gap-3 text-base font-medium text-foreground"
                 >
-                  <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-primary" />
-                  <span>{t(key)}</span>
+                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-primary" />
+                  <span>{featureText}</span>
                 </motion.div>
               ))}
             </div>
 
             {/* CTA */}
             <Link
-              href="/#services"
+              href="/about"
               className="group mt-4 inline-flex items-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20"
             >
               {t('cta')}

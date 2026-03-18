@@ -1,31 +1,13 @@
-// =============================================================================
-// Locale Layout
-// This is the primary layout for all locale-specific routes.
-// It wraps the application with:
-//   - next-intl's translation provider
-//   - Theme provider (next-themes)
-//   - Shared Navbar component
-// Server Component — handles metadata and font loading.
-// =============================================================================
-
 import type { Metadata } from 'next';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
-import { Geist_Mono } from 'next/font/google';
+import { Inter, Plus_Jakarta_Sans, Geist_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { ThemeProvider } from '@/components/providers/theme-provider';
-import { TopBar } from '@/components/shared/topbar';
-import { Navbar } from '@/components/shared/navbar';
-import { Footer } from '@/components/shared/footer';
+import { Toaster } from 'sonner';
 import { routing, type Locale } from '@/i18n/routing';
 import '../globals.css';
 
-// =============================================================================
-// Font Configuration
-// Plus Jakarta Sans for headings (authoritative, enterprise)
-// Inter for body text (clean, highly legible)
-// =============================================================================
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
   variable: '--font-sans',
@@ -45,18 +27,10 @@ const geistMono = Geist_Mono({
   display: 'swap',
 });
 
-// =============================================================================
-// Static Params Generation
-// Pre-generates routes for all supported locales at build time.
-// =============================================================================
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-// =============================================================================
-// Dynamic Metadata
-// Generates locale-specific metadata for SEO.
-// =============================================================================
 export async function generateMetadata({
   params,
 }: {
@@ -67,7 +41,7 @@ export async function generateMetadata({
   const meta = messages.Metadata as Record<string, string>;
 
   return {
-    metadataBase: new URL('https://techway.tech'),
+    metadataBase: new URL('https://techway.uz'),
     alternates: {
       canonical: `/${locale}`,
       languages: {
@@ -90,12 +64,13 @@ export async function generateMetadata({
       locale: locale,
       siteName: 'Techway',
     },
+    icons: {
+      icon: '/icon.svg',
+      apple: '/icon.svg',
+    },
   };
 }
 
-// =============================================================================
-// Layout Component
-// =============================================================================
 export default async function LocaleLayout({
   children,
   params,
@@ -105,15 +80,11 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  // Validate the locale
   if (!routing.locales.includes(locale as Locale)) {
     notFound();
   }
 
-  // Enable static rendering for this locale
   setRequestLocale(locale);
-
-  // Load all messages for the current locale
   const messages = await getMessages();
 
   return (
@@ -121,6 +92,28 @@ export default async function LocaleLayout({
       <body
         className={`${inter.variable} ${plusJakarta.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "TechWay",
+              "url": "https://techway.uz",
+              "logo": "https://techway.uz/logo.svg",
+              "sameAs": [
+                "https://t.me/techway_ceo",
+                "https://instagram.com/techway.uz"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+998-XX-XXX-XX-XX",
+                "contactType": "sales",
+                "availableLanguage": ["Uzbek", "Russian", "English"]
+              }
+            })
+          }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -128,20 +121,9 @@ export default async function LocaleLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider messages={messages}>
-            {/* Top Bar — secondary info */}
-            <TopBar />
-
-            {/* Shared Navbar — renders on every page */}
-            <Navbar />
-
-            {/* Main content area with top padding for topbar + navbar */}
-            <main className="min-h-screen pt-[104px] lg:pt-[112px]">
-              {children}
-            </main>
-
-            {/* Shared Footer */}
-            <Footer />
+            {children}
           </NextIntlClientProvider>
+          <Toaster position="top-right" richColors />
         </ThemeProvider>
       </body>
     </html>

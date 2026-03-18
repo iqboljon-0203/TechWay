@@ -40,6 +40,9 @@ export default async function EditPostPage({
     excerpt_ru: postData.excerpt_ru || '',
     image_url: postData.image_url || '',
     is_published: postData.is_published,
+    category_uz: postData.category_uz || '',
+    category_ru: postData.category_ru || '',
+    category_en: postData.category_en || '',
   };
 
   return (

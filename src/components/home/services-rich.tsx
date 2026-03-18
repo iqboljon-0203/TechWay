@@ -10,38 +10,56 @@ import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
+import * as LucideIcons from 'lucide-react';
 import { Network, ShieldCheck, Database, CloudCog, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import type { LocalizedService } from '@/lib/content';
 
-const SERVICES = [
-  {
-    key: 'strategy',
-    icon: Database,
-    image: '/images/service-consulting.png',
-    href: '/services/consulting',
-  },
-  {
-    key: 'analytics',
-    icon: Network,
-    image: '/images/service-analytics.png',
-    href: '/services/analytics',
-  },
-  {
-    key: 'advisory',
-    icon: ShieldCheck,
-    image: '/images/service-advisory.png',
-    href: '/services/advisory',
-  },
-  {
-    key: 'optimization',
-    icon: CloudCog,
-    image: '/images/service-consulting.png',
-    href: '/services/optimization',
-  },
-] as const;
-
-export function RichServices() {
+export function RichServices({ services }: { services: LocalizedService[] }) {
   const t = useTranslations('RichServices');
+
+  const displayServices = services && services.length > 0 ? services : [
+    {
+      id: '1',
+      slug: 'crm',
+      icon: 'Database',
+      image_url: '/images/service-consulting.png',
+      tag: 'Automation',
+      title: t('strategyTitle'),
+      description: t('strategyDesc'),
+      href: '/services/crm'
+    },
+    {
+      id: '2',
+      slug: 'cyber',
+      icon: 'Network',
+      image_url: '/images/service-analytics.png',
+      tag: 'Security',
+      title: t('analyticsTitle'),
+      description: t('analyticsDesc'),
+      href: '/services/cyber'
+    },
+    {
+      id: '3',
+      slug: 'ip',
+      icon: 'ShieldCheck',
+      image_url: '/images/service-advisory.png',
+      tag: 'Communication',
+      title: t('advisoryTitle'),
+      description: t('advisoryDesc'),
+      href: '/services/ip'
+    },
+    {
+      id: '4',
+      slug: 'license',
+      icon: 'CloudCog',
+      image_url: '/images/service-consulting.png',
+      tag: 'Licensing',
+      title: t('optimizationTitle'),
+      description: t('optimizationDesc'),
+      href: '/services/license'
+    }
+  ] as any[];
 
   return (
     <section id="services" className="dark bg-brand-navy-dark bg-navy-gradient-dark py-24 sm:py-32 relative overflow-hidden">
@@ -93,28 +111,31 @@ export function RichServices() {
 
         {/* Service Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {SERVICES.map((service, i) => {
-            const Icon = service.icon;
+          {displayServices.map((service, i) => {
+            const Icon = (LucideIcons as any)[service.icon || 'CloudCog'] || LucideIcons.CloudCog;
+            const href = service.href || `/services/${service.slug}`;
             return (
               <motion.div
-                key={service.key}
+                key={service.id || service.slug}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="group card-hover-depth"
               >
-                <Link href={service.href} className="block relative h-full overflow-hidden rounded-2xl border border-white/10 bg-[#0F1D32]">
+                <Link href={href as any} className="block relative h-full overflow-hidden rounded-2xl border border-white/10 bg-[#0F1D32]">
                   {/* Image Background Top Half */}
                   <div className="relative h-48 w-full overflow-hidden">
                     <div className="absolute inset-0 bg-brand-navy/60 group-hover:bg-brand-navy/40 transition-colors duration-300 z-10 mix-blend-multiply" />
-                    <Image
-                      src={service.image}
-                      alt={t(`${service.key}Title`)}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                    />
+                    {service.image_url && (
+                      <Image
+                        src={service.image_url}
+                        alt={service.title || 'Service'}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      />
+                    )}
                     {/* Floating Icon Box */}
                     <div className="absolute bottom-4 left-6 z-20 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-accent text-white shadow-lg">
                       <Icon className="h-6 w-6" />
@@ -127,10 +148,10 @@ export function RichServices() {
                       className="text-xl font-bold text-white transition-colors group-hover:text-brand-glow mb-3 line-clamp-2 min-h-[56px]"
                       style={{ fontFamily: 'var(--font-heading)' }}
                     >
-                      {t(`${service.key}Title`)}
+                      {service.title}
                     </h3>
                     <p className="text-sm text-white/60 leading-relaxed line-clamp-3 mb-6">
-                      {t(`${service.key}Desc`)}
+                      {service.description}
                     </p>
 
                     <div className="flex items-center text-sm font-semibold text-brand-glow group-hover:text-white transition-colors">

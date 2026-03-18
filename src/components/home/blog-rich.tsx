@@ -15,19 +15,10 @@ import Image from 'next/image';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 
-type Post = {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt?: string | null;
-  image_url: string | null;
-  created_at: string;
-  author_name?: string;
-  category?: string;
-};
+import { LocalizedPost } from '@/lib/blog';
 
 type BlogPreviewProps = {
-  posts: Post[];
+  posts: LocalizedPost[];
 };
 
 export function RichBlogPreview({ posts }: BlogPreviewProps) {
@@ -37,32 +28,32 @@ export function RichBlogPreview({ posts }: BlogPreviewProps) {
   const displayPosts = posts.length > 0 ? posts.slice(0, 3) : [
     {
       id: '1',
-      slug: 'transforming-ideas-into-it-solutions',
-      title: 'Rapidly incubate wireless bandwidth whereas',
-      excerpt: 'Professionally deploy rather mindshare objectively engineer processes client-centric manufactured products.',
-      image_url: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=400&h=250&auto=format&fit=crop',
+      slug: 'crm-erp-benefits',
+      title: t('mock1_title'),
+      excerpt: t('mock1_excerpt'),
+      image_url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=400&h=250&auto=format&fit=crop',
       created_at: new Date().toISOString(),
-      author_name: 'David Watson',
-      category: 'IT Solution',
-    },
-    {
-      id: '2',
-      slug: 'growing-business-with-modern-networks',
-      title: 'Rapidly incubate wireless bandwidth whereas',
-      excerpt: 'Professionally deploy rather mindshare objectively engineer processes client-centric manufactured products.',
-      image_url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&h=250&auto=format&fit=crop',
-      created_at: new Date().toISOString(),
-      author_name: 'Thomas Reed',
+      author_name: 'TechWay Team',
       category: 'Business',
     },
     {
-      id: '3',
-      slug: 'cybersecurity-trends-2026',
-      title: 'Rapidly incubate wireless bandwidth whereas',
-      excerpt: 'Professionally deploy rather mindshare objectively engineer processes client-centric manufactured products.',
-      image_url: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=400&h=250&auto=format&fit=crop',
+      id: '2',
+      slug: 'cybersecurity-business',
+      title: t('mock2_title'),
+      excerpt: t('mock2_excerpt'),
+      image_url: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=400&h=250&auto=format&fit=crop',
       created_at: new Date().toISOString(),
-      author_name: 'Henry Cooper',
+      author_name: 'TechWay Team',
+      category: 'Security',
+    },
+    {
+      id: '3',
+      slug: 'telephony-call-center',
+      title: t('mock3_title'),
+      excerpt: t('mock3_excerpt'),
+      image_url: 'https://images.unsplash.com/photo-1516321318423-f06f85e51ffb?q=80&w=400&h=250&auto=format&fit=crop',
+      created_at: new Date().toISOString(),
+      author_name: 'TechWay Team',
       category: 'Technology',
     },
   ];
@@ -98,12 +89,13 @@ export function RichBlogPreview({ posts }: BlogPreviewProps) {
               {/* Image Area */}
               <div className="relative h-60 w-full overflow-hidden">
                 {post.image_url ? (
-                  <Image 
-                    src={post.image_url} 
-                    alt={post.title} 
-                    fill 
-                    className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                  />
+                    <Image 
+                      src={post.image_url} 
+                      alt={post.title} 
+                      fill 
+                      className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
                 ) : (
                   <div className="h-full w-full bg-muted flex items-center justify-center">
                     <span className="text-muted-foreground font-bold">TECHWAY</span>
@@ -121,7 +113,7 @@ export function RichBlogPreview({ posts }: BlogPreviewProps) {
                 <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
                   <div className="flex items-center gap-1.5">
                     <User className="h-3.5 w-3.5 text-primary" />
-                    <span>By {post.author_name || 'Admin'}</span>
+                    <span>By {(post as any).author_name || 'TechWay Team'}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Calendar className="h-3.5 w-3.5 text-primary" />

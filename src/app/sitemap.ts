@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getAllPostSlugs } from '@/lib/blog';
 
 // The base URL of your deployed application
-const baseUrl = 'https://techway.tech';
+const baseUrl = 'https://techway.uz';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const slugs = await getAllPostSlugs();

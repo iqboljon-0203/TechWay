@@ -1,6 +1,5 @@
 'use server';
 
-import { createClient } from '@/lib/supabase/server';
 import { z } from 'zod';
 
 const contactSchema = z.object({
@@ -19,31 +18,54 @@ export async function submitContact(prevState: any, formData: FormData) {
       message: formData.get('message')?.toString() || '',
     };
 
+    console.log('[submitContact] Received data:', data);
+
     // Validate using Zod
     const validatedData = contactSchema.parse(data);
 
-    // Insert into Supabase
+    // Re-connect to Supabase
+    const { createClient } = await import('@/lib/supabase/server');
     const supabase = await createClient();
-    const { error } = await (supabase as any).from('contact_submissions').insert([
-      {
+    
+    const { error } = await supabase.from('contact_submissions').insert({
         name: validatedData.name,
-        email: validatedData.service, // Repurposing email column for service if it exists, or just storing it there
-        phone: validatedData.phone || null,
-        message: validatedData.message,
-      },
-    ]);
+        service: validatedData.service,
+        phone: validatedData.phone,
+        message: validatedData.message
+    });
 
     if (error) {
-      console.error('Supabase insert error in contact form:', error.message);
-      return { success: false, error: 'database_error' };
+        console.error('[submitContact] Supabase error:', error.message, error.details);
+        return { success: false, error: 'database_error', details: error.message };
     }
 
+    // 🔥 Send Telegram Notification asynchronously (don't block the UI response)
+    const { sendTelegramNotification } = await import('@/lib/telegram');
+    // We don't await this so the user gets "Success" message immediately
+    sendTelegramNotification({
+      name: validatedData.name,
+      service: validatedData.service,
+      phone: validatedData.phone,
+      message: validatedData.message
+    }).catch(e => console.error('[submitContact] Telegram notification failed:', e));
+
+    console.log('[submitContact] Success');
     return { success: true, error: null };
-  } catch (err) {
+  } catch (err: any) {
     if (err instanceof z.ZodError) {
-      return { success: false, error: 'validation_error' };
+      console.warn('[submitContact] Validation error:', err.issues);
+      const firstIssue = err.issues[0];
+      const field = String(firstIssue.path[0]);
+      const message = firstIssue.message;
+      let userFriendlyMessage = `${field}: ${message}`;
+      if (field === 'message' && message.includes('10')) {
+        userFriendlyMessage = "Xabar kamida 10 ta belgidan iborat boʻlishi kerak.";
+      } else if (message.includes('required')) {
+        userFriendlyMessage = "Iltimos, barcha maydonlarni toʻldiring.";
+      }
+      return { success: false, error: 'validation_error', details: userFriendlyMessage };
     }
-    console.error('Unexpected error in contact form submission:', err);
-    return { success: false, error: 'unexpected_error' };
+    console.error('[submitContact] Unexpected error:', err);
+    return { success: false, error: 'unexpected_error', details: err?.message || String(err) };
   }
 }

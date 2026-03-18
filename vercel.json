@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/keep-alive?secret=techway_keep_active_secret_2025",
+      "schedule": "0 0 */2 * *"
+    }
+  ]
+}

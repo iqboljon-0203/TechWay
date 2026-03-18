@@ -53,8 +53,20 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  // Convert the unknown JSONB HTML string content to markup (assuming Tiptap returns raw HTML string for now)
-  const contentHtml = typeof post.content === 'string' ? post.content : '';
+  // Handle both raw HTML strings and TipTap JSON content
+  let contentHtml = '';
+  if (typeof post.content === 'string') {
+    contentHtml = post.content;
+  } else if (post.content && typeof post.content === 'object' && (post.content as any).type === 'doc') {
+      // Very simple extraction for TipTap 'doc' structure (paragraphs and text)
+      contentHtml = (post.content as any).content?.map((node: any) => {
+          if (node.type === 'paragraph') {
+              const text = node.content?.map((c: any) => c.text || '').join('') || '';
+              return `<p>${text}</p>`;
+          }
+          return '';
+      }).join('') || '';
+  }
 
   return (
     <article className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">

@@ -74,10 +74,10 @@ export function Footer() {
               {t('serviceLinks')}
             </h3>
             <ul className="space-y-4">
-              {['Business Consult', 'Cyber Security', 'IT Consultancy', 'Network Architect', 'IP Telephony'].map((item) => (
+              {['businessconsult', 'cybersecurity', 'itconsultancy', 'networkarchitect', 'iptelephony'].map((item) => (
                 <li key={item}>
-                  <Link href="/services" className="text-white/60 hover:text-brand-glow transition-colors block">
-                    {t(`services.${item.replace(/\s+/g, '').toLowerCase()}`)}
+                  <Link href="/#services" className="text-white/60 hover:text-brand-glow transition-colors block">
+                    {t(`services.${item}`)}
                   </Link>
                 </li>
               ))}
@@ -95,7 +95,14 @@ export function Footer() {
                   <MapPin className="h-4 w-4" />
                 </div>
                 <div className="text-sm text-white/60">
-                   {t('address')}
+                   <a 
+                     href={`https://yandex.com/maps/?text=${encodeURIComponent(t('address'))}`} 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     className="hover:text-brand-glow transition-colors"
+                   >
+                    {t('address')}
+                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-4 group">
@@ -103,7 +110,9 @@ export function Footer() {
                   <Phone className="h-4 w-4" />
                 </div>
                 <div className="text-sm text-white/60">
-                  +998 55 205 05 55
+                  <a href={`tel:${t('phone').replace(/\s+/g, '')}`} className="hover:text-brand-glow transition-colors">
+                    {t('phone')}
+                  </a>
                 </div>
               </li>
               <li className="flex items-start gap-4 group">
@@ -111,7 +120,9 @@ export function Footer() {
                   <Mail className="h-4 w-4" />
                 </div>
                 <div className="text-sm text-white/60">
-                  hello@techway.tech
+                   <a href={`mailto:${t('email')}`} className="hover:text-brand-glow transition-colors">
+                    {t('email')}
+                   </a>
                 </div>
               </li>
             </ul>

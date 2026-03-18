@@ -1,25 +1,40 @@
-// =============================================================================
-// Appointment Section — IT-Flow Enterprise Style
-// Features:
-//   - High-conversion 'Make an Appointment' form
-//   - Semi-transparent blue glassmorphism overlay (glass-blue)
-//   - Professional meeting background image
-// =============================================================================
-
 'use client';
 
+import { useState, useTransition } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { User, Mail, Phone, MessageSquare, Send } from 'lucide-react';
+import { User, Phone, MessageSquare, Send, Layers, ChevronDown, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { submitContact } from '@/app/actions/contact';
+import { toast } from 'sonner';
+import type { LocalizedService } from '@/lib/content';
 
-export function AppointmentSection() {
+export function AppointmentSection({ services = [] }: { services?: LocalizedService[] }) {
   const t = useTranslations('Appointment');
+  const [isPending, startTransition] = useTransition();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    
+    startTransition(async () => {
+      const result = await submitContact(null, formData);
+      console.log('[AppointmentSection] Result:', result);
+      
+      if (result.success) {
+        toast.success(t('successMessage') || 'Xabaringiz yuborildi! Tez orada bogʻlanamiz.');
+        (e.target as HTMLFormElement).reset();
+      } else {
+        const errorDetail = result.details ? (typeof result.details === 'string' ? result.details : JSON.stringify(result.details)) : '';
+        toast.error(`${t('errorMessage') || 'Xatolik yuz berdi.'} ${errorDetail}`);
+      }
+    });
+  };
 
   return (
-    <section className="relative py-24 sm:py-32">
+    <section id="contact" className="relative py-24 sm:py-32">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <div 
@@ -84,56 +99,54 @@ export function AppointmentSection() {
             </h3>
             <p className="text-white/60 text-sm mb-8">{t('formSubtitle')}</p>
 
-            <form className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="text-white/80">{t('nameLabel')}</Label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
                     <Input 
+                      required
                       id="name" 
+                      name="name"
                       placeholder={t('namePlaceholder')} 
-                      className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/30 focus:border-brand-glow transition-all"
+                      className="h-12 pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/30 focus:border-brand-glow transition-all rounded-xl shadow-none focus-visible:ring-0 outline-none"
                     />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-white/80">{t('emailLabel')}</Label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      placeholder={t('emailPlaceholder')} 
-                      className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/30 focus:border-brand-glow transition-all"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="text-white/80">{t('phoneLabel')}</Label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
                     <Input 
+                      required
                       id="phone" 
+                      name="phone"
                       placeholder={t('phonePlaceholder')} 
-                      className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/30 focus:border-brand-glow transition-all"
+                      className="h-12 pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/30 focus:border-brand-glow transition-all rounded-xl shadow-none focus-visible:ring-0 outline-none"
                     />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="service" className="text-white/80">{t('serviceLabel')}</Label>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="service" className="text-white/80">{t('serviceLabel')}</Label>
+                <div className="relative">
+                  <Layers className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
                   <select 
+                    required
                     id="service"
-                    className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-brand-glow transition-all"
+                    name="service"
+                    className="w-full h-12 pl-10 pr-10 rounded-xl border border-white/20 bg-white/10 text-sm text-white focus:outline-none focus:ring-1 focus:ring-brand-glow transition-all cursor-pointer appearance-none"
                   >
-                    <option className="bg-brand-navy">{t('selectService')}</option>
-                    <option className="bg-brand-navy">CRM & ERP</option>
-                    <option className="bg-brand-navy">Cybersecurity</option>
-                    <option className="bg-brand-navy">Network</option>
+                    <option value="" className="bg-brand-navy">{t('selectService')}</option>
+                    {services.map((service) => (
+                        <option key={service.id} value={service.title || service.id} className="bg-brand-navy">
+                            {service.title || service.slug}
+                        </option>
+                    ))}
                   </select>
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40 pointer-events-none" />
                 </div>
               </div>
 
@@ -142,17 +155,29 @@ export function AppointmentSection() {
                 <div className="relative">
                   <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-white/40" />
                   <textarea 
+                    required
                     id="message" 
+                    name="message"
                     rows={4}
                     placeholder={t('messagePlaceholder')} 
-                    className="w-full pl-10 pt-2 rounded-md border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-brand-glow transition-all"
+                    className="w-full pl-10 pt-3 rounded-xl border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-brand-glow transition-all min-h-[100px]"
                   />
                 </div>
               </div>
 
-              <Button className="w-full bg-brand-glow hover:bg-white hover:text-brand-navy text-white font-bold py-6 rounded-xl transition-all duration-300 shadow-xl shadow-brand-glow/20">
-                <Send className="mr-2 h-5 w-5" />
-                {t('submitBtn')}
+              <Button 
+                type="submit"
+                disabled={isPending}
+                className="w-full bg-brand-glow hover:bg-white hover:text-brand-navy text-brand-navy-dark font-black py-7 rounded-xl transition-all duration-300 shadow-xl shadow-brand-glow/20 disabled:opacity-50"
+              >
+                {isPending ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                ) : (
+                    <>
+                        <Send className="mr-2 h-5 w-5" />
+                        {t('submitBtn')}
+                    </>
+                )}
               </Button>
             </form>
           </motion.div>

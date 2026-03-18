@@ -117,16 +117,17 @@ export function Navbar() {
         <div className="hidden items-center gap-2 md:flex">
           <ThemeToggle />
           <LanguageSwitcher />
-          <Link
-            href="/#contact"
-            onClick={(e) => handleNavClick(e, '/#contact')}
+          <a
+            href="https://t.me/techway_ceo"
+            target="_blank"
+            rel="noopener noreferrer"
             className="ml-2 inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-md transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20"
           >
             {t('cta')}
             <svg className="ml-1.5 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </Link>
+          </a>
         </div>
 
         {/* ─── Mobile Toggle ──────────────────────────── */}

@@ -12,6 +12,7 @@ import { RichServices } from '@/components/home/services-rich';
 import { AppointmentSection } from '@/components/home/appointment';
 import { RichBlogPreview } from '@/components/home/blog-rich';
 import { getPublishedPosts } from '@/lib/blog';
+import { getServices, getSiteContent } from '@/lib/content';
 import { type Locale } from '@/i18n/routing';
 
 export default async function HomePage({
@@ -25,25 +26,35 @@ export default async function HomePage({
   // Enable static rendering for this locale
   setRequestLocale(locale);
 
-  // Fetch real blog posts if available
-  const { posts } = await getPublishedPosts(typedLocale, { pageSize: 3 });
+  // Parallel data fetching for optimal performance
+  const [
+    { posts },
+    services,
+    aboutData,
+    homeData
+  ] = await Promise.all([
+    getPublishedPosts(typedLocale, { pageSize: 3 }),
+    getServices(typedLocale),
+    getSiteContent('about', typedLocale),
+    getSiteContent('home', typedLocale)
+  ]);
 
   return (
     <div className="flex flex-col overflow-x-hidden">
       {/* 🚀 Hero Section - Redesigned dual-column layout */}
-      <Hero />
+      <Hero content={homeData} />
 
       {/* 📊 Floating Quick Services */}
-      <FloatingServiceBar />
+      <FloatingServiceBar content={homeData} />
 
       {/* 🏢 About Us - Core features and team stats */}
-      <AboutSection />
+      <AboutSection content={aboutData} />
 
       {/* 🛠 Rich Services Grid - Professional IT-Flow cards */}
-      <RichServices />
+      <RichServices services={services} />
 
       {/* 📝 Appointment Form - High conversion glassmorphism */}
-      <AppointmentSection />
+      <AppointmentSection services={services} />
 
       {/* 📰 Blog Insights - Expert articles grid */}
       <RichBlogPreview posts={posts.slice(0, 3)} />
