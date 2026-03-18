@@ -132,6 +132,27 @@
     "mock3_title": "The future of IP telephony and modern call centers",
     "mock3_excerpt": "The capabilities of IP telephony and software in automating customer relations and improving conversation quality."
   },
+  "Contact": {
+    "sectionTitle": "Get in touch with us",
+    "sectionSubtitle": "Have a specific inquiry or wish to discuss a custom project? Fill out the form below and our team will get back to you within 24 hours.",
+    "address": "33 Istiklol St, Andijan, Uzbekistan",
+    "name": "Your name",
+    "service": "Select service",
+    "phone": "Phone number",
+    "message": "Write message",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Failed to send message.",
+    "services": {
+      "crm": "CRM & ERP",
+      "network": "Networks",
+      "cyber": "Cybersecurity",
+      "ip": "IP Telephony",
+      "license": "Licenses",
+      "other": "Other"
+    }
+  },
   "Services": {
     "sectionTitle": "Company Services",
     "sectionSubtitle": "TechWay provides the most modern IT solutions to take your business to the next level.",

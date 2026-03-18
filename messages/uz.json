@@ -139,6 +139,27 @@
     "mock3_title": "IP Telefoniya va zamonaviy Call-markazlar kelajagi",
     "mock3_excerpt": "Mijozlar bilan aloqalarni avtomatlashtirish va suhbat sifatini oshirishda IP telefoniya imkoniyatlari."
   },
+  "Contact": {
+    "sectionTitle": "Bog'lanish",
+    "sectionSubtitle": "Sizda savollar bormi yoki maxsus loyihani muhokama qilmoqchimisiz? Quyidagi shaklni to'ldiring va jamoamiz 24 soat ichida siz bilan bog'lanadi.",
+    "address": "Andijon shahar, Istiqlol ko’chasi, 33-uy",
+    "name": "Ismingiz",
+    "service": "Xizmatni tanlang",
+    "phone": "Telefon raqami",
+    "message": "Xabar yozing",
+    "submit": "Xabarni yuborish",
+    "sending": "Yuborilmoqda...",
+    "success": "Xabaringiz muvaffaqiyatli yuborildi!",
+    "error": "Xabarni yuborishda xatolik yuz berdi.",
+    "services": {
+      "crm": "CRM & ERP",
+      "network": "Tarmoqlar",
+      "cyber": "Kiberxavfsizlik",
+      "ip": "IP Telefoniya",
+      "license": "Litsenziyalar",
+      "other": "Boshqa"
+    }
+  },
   "Services": {
     "sectionTitle": "Kompaniya Xizmatlari",
     "sectionSubtitle": "TechWay biznesingizni yangi bosqichga olib chiqish uchun eng zamonaviy IT-yechimlarini taqdim etadi.",

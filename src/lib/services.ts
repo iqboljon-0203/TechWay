@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server';
+import { createClient, createAdminClient } from '@/lib/supabase/server';
 import type { Locale } from '@/i18n/routing';
 
 export interface LocalizedService {
@@ -18,7 +18,7 @@ export interface LocalizedService {
  */
 export async function getServices(locale: Locale): Promise<LocalizedService[]> {
   try {
-    const supabase = await createClient();
+    const supabase = createAdminClient();
     const { data, error } = await supabase
       .from('services')
       .select('*')
@@ -51,7 +51,7 @@ export async function getServices(locale: Locale): Promise<LocalizedService[]> {
  */
 export async function getServiceBySlug(slug: string, locale: Locale): Promise<LocalizedService | null> {
   try {
-    const supabase = await createClient();
+    const supabase = createAdminClient();
     const { data, error } = await supabase
       .from('services')
       .select('*')
@@ -83,7 +83,7 @@ export async function getServiceBySlug(slug: string, locale: Locale): Promise<Lo
  * Fetches all service slugs for static generation.
  */
 export async function getAllServiceSlugs(): Promise<string[]> {
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const { data, error } = await supabase
     .from('services')
     .select('slug');

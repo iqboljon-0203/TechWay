@@ -3,7 +3,7 @@
 // Provides type-safe, locale-aware functions for fetching blog posts.
 // =============================================================================
 
-import { createClient } from '@/lib/supabase/server';
+import { createClient, createAdminClient } from '@/lib/supabase/server';
 import type { Locale } from '@/i18n/routing';
 
 /** Locale-resolved post shape for use in the frontend */
@@ -28,7 +28,7 @@ export async function getPublishedPosts(
   options?: { page?: number; pageSize?: number }
 ): Promise<{ posts: LocalizedPost[]; total: number }> {
   try {
-    const supabase = await createClient();
+    const supabase = createAdminClient();
     
     const page = options?.page ?? 1;
     const pageSize = options?.pageSize ?? 10;

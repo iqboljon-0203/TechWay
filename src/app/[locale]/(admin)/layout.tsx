@@ -68,11 +68,11 @@ export default async function AdminLayout({
         <div className="mt-auto border-t border-white/5 p-8">
             <div className="mb-6 px-1 flex items-center gap-3">
                 <div className="h-10 w-10 rounded-xl bg-brand-glow flex items-center justify-center font-black text-brand-navy-dark shadow-sm">
-                    {user.email?.[0].toUpperCase()}
+                    {user?.email?.[0]?.toUpperCase() || 'A'}
                 </div>
                 <div className="flex-1 min-w-0">
-                    <p className="text-sm font-black text-white truncate">{user.email?.split('@')[0]}</p>
-                    <p className="text-[10px] font-bold text-white/40 truncate tracking-tight">{user.email}</p>
+                    <p className="text-sm font-black text-white truncate">{user?.email?.split('@')[0] || 'Admin'}</p>
+                    <p className="text-[10px] font-bold text-white/40 truncate tracking-tight">{user?.email || ''}</p>
                 </div>
             </div>
           <form action="/auth/signout" method="POST">
